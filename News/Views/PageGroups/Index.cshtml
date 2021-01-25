@@ -12,7 +12,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.GroupTitle)
+               عنوان گروه خبری
             </th>
             <th></th>
         </tr>
@@ -24,9 +24,9 @@
                 @Html.DisplayFor(modelItem => item.GroupTitle)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.GroupId">ویرایش</a> |
-                <a asp-action="Details" asp-route-id="@item.GroupId">جزئیات</a> |
-                <a asp-action="Delete" asp-route-id="@item.GroupId">حذف</a>
+                <a asp-action="Edit" class="btn btn-sm btn-primary" asp-route-id="@item.GroupId">ویرایش</a> |
+                <a asp-action="Details" asp-route-id="@item.GroupId" class="btn btn-warning btn-sm">جزئیات</a> |
+                <a asp-action="Delete" asp-route-id="@item.GroupId" class="btn btn-danger btn-sm">حذف</a>
             </td>
         </tr>
 }
