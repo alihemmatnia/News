@@ -33,7 +33,9 @@ namespace News
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddWebMarkupMin()
+          
+      
+            services.AddWebMarkupMin(e => e.AllowMinificationInDevelopmentEnvironment = true)
                 .AddHtmlMinification()
                 .AddHttpCompression();
             services.AddDbContextPool<AppDbContext>(option =>
@@ -74,18 +76,16 @@ namespace News
             app.UseStaticFiles();
             app.UseStatusCodePagesWithReExecute("/error/{0}");
             app.UseRouting();
-
+            app.UseWebMarkupMin();
+	    app.UseAuthentication();
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapControllerRoute(
-                   name: "areas",
-                   pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-                 );
+               
             });
         }
     }

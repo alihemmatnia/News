@@ -6,6 +6,7 @@ using News.Services.Repositories;
 using System.Threading.Tasks;
 using News.DomainClasses.PageGroups;
 using News.DataLayer.Context;
+using News.ViewModel.Page;
 
 namespace News.Services.Services
 {
@@ -22,9 +23,9 @@ namespace News.Services.Services
 
         }
 
-        public void DeletePageGroup(int Id)
+        public void DeletePageGroup(int id)
         {
-            _context.Entry(GetPageGroupById(Id)).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+            _context.Entry(GetPageGroupById(id)).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
         }
 
         public PageGroup GetPageGroupById(int Id)
@@ -57,9 +58,16 @@ namespace News.Services.Services
             return _context.PageGroups.Any(i => i.GroupId == id);
         }
 
-        public void DeltePageGroup(int Id)
+     
+
+        public List<ShowGroupsVM> GetListGroups()
         {
-            throw new NotImplementedException();
+            return _context.PageGroups.Select(g => new ShowGroupsVM()
+            {
+                GroupId = g.GroupId,
+                GroupTitle = g.GroupTitle,
+                PageCount=_context.Pages.Where(p=>p.GroupId==g.GroupId).Count()
+            }).ToList();
         }
     }
 }

@@ -1,0 +1,25 @@
+﻿@model News.DomainClasses.PageGroups.PageGroup
+
+@{
+    ViewData["Title"] = "حذف گروه خبری";
+}
+
+
+<h3>ایا از حذف این گروه خبری مطمئن هستید ؟؟</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GroupTitle)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="GroupId" />
+        <input type="submit" value="حذف" class="btn btn-danger" /> |
+        <a asp-action="Index">برگشت به لیست</a>
+    </form>
+</div>

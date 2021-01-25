@@ -1,0 +1,15 @@
+﻿@using News.Services.Repositories
+@inject IPageGroupRepository _pageGroupRepository
+
+    <ul>
+        <li><a asp-action="/"> صفحه اصلی </a></li>
+        <li>
+            <span>گروه های خبری</span>
+            <ul>
+                @foreach (var item in _pageGroupRepository.GetAllPageGroups())
+                {
+                    <li><a href="/Group/@item.GroupId/@item.GroupTitle">@item.GroupTitle</a></li>
+                }
+            </ul>
+        </li>
+    </ul>

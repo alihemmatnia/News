@@ -18,17 +18,17 @@ namespace News.Services.Services
             {
                 var cr = new NetworkCredential()
                 {
-                    UserName = "ali2004h.linux", // Without @gmail.com or ...; فقط نام کاربری بدون @gmail.com
-                    Password = "Ali2004h*ali"
+                    UserName = "test", // Without @gmail.com or ...; فقط نام کاربری بدون @gmail.com
+                    Password = "ali2004h*"
                 };
                 client.Credentials = cr;
-                client.Host = "smtp.gmail.com";
-                client.Port = 587;
+                client.Host = "cp42.tavanahost.com";
+                client.Port = 465;
                 client.EnableSsl = true;
                 using var emailMessage = new MailMessage()
                 {
                     To = { new MailAddress(email) },
-                    From = new MailAddress("ali2004h.linux@gmail.com"), // Enter Your Mail Addres; ایمیل خودتون رو بنویسید
+                    From = new MailAddress("test@ali2004h.ir"), // Enter Your Mail Addres; ایمیل خودتون رو بنویسید
                     Subject = subjet,
                     Body = message,
                     IsBodyHtml = ishtml

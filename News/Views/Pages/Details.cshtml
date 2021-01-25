@@ -1,0 +1,72 @@
+﻿@model News.DomainClasses.Page.Page
+
+@{
+    ViewData["Title"] = "جزئیات خبر";
+}
+
+
+<div>
+    <h4>جزئیات</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GroupId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PageTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PageTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShortDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShortDescription)
+        </dd>
+      
+        <dt>
+            @Html.DisplayNameFor(model => model.Visit)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Visit)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageName)
+        </dt>
+        <dd>
+           <img src="~/Images/@Model.ImageName"  class="thumbnail" style="max-width:200px"/>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShowSlider)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShowSlider)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PageTag)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PageTag)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+        <dd>
+            @Model.CreateDate.ToShamsi()
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Writer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Writer)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.PageId" class="btn btn-warning">ویرایش</a> |
+    <a asp-action="Index">برگشت به لیست خبرها</a>
+</div>

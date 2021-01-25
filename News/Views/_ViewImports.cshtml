@@ -1,3 +1,7 @@
 ﻿@using News
 @using News.Models
+@using News.Utilities.Converter
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Identity 
+@inject SignInManager<IdentityUser> signmanager
+@inject UserManager<IdentityUser> usermanager

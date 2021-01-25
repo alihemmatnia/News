@@ -1,0 +1,23 @@
+﻿@model News.DomainClasses.PageGroups.PageGroup
+
+@{
+    ViewData["Title"] = "جزئیات";
+}
+
+
+<div>
+    <h4>جزئیات</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GroupTitle)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" class="btn btn-warning" asp-route-id="@Model.GroupId">ویرایش</a> |
+    <a asp-action="Index">برگشت به لیست</a>
+</div>

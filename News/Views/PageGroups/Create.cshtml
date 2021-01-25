@@ -1,0 +1,29 @@
+﻿@model News.DomainClasses.PageGroups.PageGroup
+
+@{
+    ViewData["Title"] = "ساخت گروه خبری";
+}
+
+<h2>ساخت گروه خبری</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="GroupTitle" class="control-label"></label>
+                <input asp-for="GroupTitle" class="form-control" />
+                <span asp-validation-for="GroupTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="ساخت" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">برگشت به لیست</a>
+</div>
+

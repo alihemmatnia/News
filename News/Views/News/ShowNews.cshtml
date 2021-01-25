@@ -1,0 +1,28 @@
+﻿@model News.DomainClasses.Page.Page
+ @{
+     ViewData["Title"] = Model.PageTitle;
+
+ }
+<section class="single-news border-radius">
+
+    <header><h2>@Model.PageTitle </h2> <span> <i class="fa fa-calendar"></i>  انتشار : @Model.CreateDate.ToShamsi()</span></header>
+    <article>
+        @if (Model.ImageName != null){
+        <div>
+            <img src="~/Images/@Model.ImageName" alt="@Model.PageTitle" style="max-width:400px" class="thumbnail" />
+        </div>
+        }
+        <p>
+            @Model.ShortDescription
+        </p>
+        <p>
+            @Model.PageContent
+        </p>
+    </article>
+</section>
+<div class="keywords border-radius">
+    @foreach (var item in Model.PageTag.Split("-"))
+    {
+        <a href="/Search/@item"> @item </a>
+    }
+</div>

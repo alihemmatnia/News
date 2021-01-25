@@ -19,7 +19,7 @@ namespace News.DomainClasses.PageGroups
         
         public string GroupTitle { get; set; }
 
-        public virtual List<Page.Page> Pages { get; set; }
+        public virtual ICollection<Page.Page> Pages { get; set; }
     }
 }
 

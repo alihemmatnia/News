@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using News.DomainClasses.Page;
 using News.DomainClasses.PageGroups;
-
+using News.ViewModel.Page;
 
 namespace News.Services.Repositories
 {
@@ -15,9 +15,9 @@ namespace News.Services.Repositories
         PageGroup GetPageGroupById(int Id);
         void InsertPageGroup(PageGroup pageGroup);
         void UpdatePageGroup(PageGroup pageGroup);
-        void DeletePageGroup(PageGroup pageGroup);
+        void DeletePageGroup(int id);
         bool GroupExists(int id);
-        void DeltePageGroup(int Id);
+        List<ShowGroupsVM> GetListGroups();
         void Save();
     }
 }

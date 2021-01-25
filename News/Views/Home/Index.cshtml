@@ -1,71 +1,47 @@
-﻿@{
+﻿@using News.DomainClasses.Page
+@model IEnumerable<News.DomainClasses.Page.Page>
+@{
     ViewData["Title"] = "صفحه اصلی";
+    var Sliders = ViewData["Slider"] as List<Page>;
+}
+@if (Sliders.Any())
+{
+    <div class="news-slider border-radius">
+        <div id="slider-one" class="owl-carousel">
+            @foreach (var item in Sliders)
+            {
+                <div class="item">
+                    <img src="~/Images/@item.ImageName">
+                    <div class="left-side">
+                        <h2> <a href="/News/@item.PageId">@item.PageTitle</a> </h2>
+                        <p>
+                           @item.ShortDescription
+                        </p>
+                        <span> <i class="fa fa-calendar"></i> انتشار : @item.CreateDate.ToShamsi()</span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            }
+            </div>
+        <a href="/Archive" class="news-archive"> <i class="icons icon-doc-1"></i> آرشیو کامل خبرها </a>
+    </div>
 }
 
-<!-- slider -->
-<div class="news-slider border-radius">
-    <div id="slider-one" class="owl-carousel">
-        <!-- each item -->
-        <div class="item">
-            <img src="img/thumb.png">
-            <div class="left-side">
-                <h2> <a href="">عنوان خبر در این ناحیه قرار میگیرد</a> </h2>
-                <p>
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-                </p>
-                <span> <i class="fa fa-calendar"></i> انتشار : 15/08/1395</span>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-        <!-- end each item -->
-        <!-- each item -->
-        <div class="item">
-            <img src="img/thumb.png">
-            <div class="left-side">
-                <h2> <a href="">عنوان خبر در این ناحیه قرار میگیرد</a> </h2>
-                <p>
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-                </p>
-                <span> <i class="fa fa-calendar"></i> انتشار : 15/08/1395</span>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-        <!-- end each item -->
-    </div>
-    <a href="" class="news-archive"> <i class="icons icon-doc-1"></i> آرشیو کامل خبرها </a>
-</div>
-<!-- End slider -->
-<!-- last news -->
 <section class="last-news-section border-radius margin-top-60">
     <header><i class="icons icon-doc-2"></i>  <h3>آخرین آخبار ارسالی</h3> </header>
     <ul>
-        <li>
-            <img class="border-radius" src="img/thumb.png">
-            <h2> <a href=""> عنوان خبر در این ناحیه قرار میگیرد </a></h2>
-            <p>
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است ...
-            </p>
-            <span class="date-publish"><i class="fa fa-calendar"></i> انتشار : 15/08/1395 </span>
-            <a href="" class="more-link"><i class="icons icon-more"></i></a>
-        </li>
-        <li>
-            <img class="border-radius" src="img/thumb.png">
-            <h2> <a href=""> عنوان خبر در این ناحیه قرار میگیرد </a></h2>
-            <p>
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است ...
-            </p>
-            <span class="date-publish"><i class="fa fa-calendar"></i> انتشار : 15/08/1395 </span>
-            <a href="" class="more-link"><i class="icons icon-more"></i></a>
-        </li>
-        <li>
-            <img class="border-radius" src="img/thumb.png">
-            <h2> <a href=""> عنوان خبر در این ناحیه قرار میگیرد </a></h2>
-            <p>
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است ...
-            </p>
-            <span class="date-publish"><i class="fa fa-calendar"></i> انتشار : 15/08/1395 </span>
-            <a href="" class="more-link"><i class="icons icon-more"></i></a>
-        </li>
+        @foreach (var it in Model)
+        {
+            <li>
+                <img class="border-radius" src="~/Images/@it.ImageName">
+                <h2> <a href="/News/@it.PageId"> @it.PageTitle </a></h2>
+                <p>
+                    @it.ShortDescription
+                </p>
+                <span class="date-publish"><i class="fa fa-calendar"></i> انتشار : @it.CreateDate.ToShamsi() </span>
+                <a href="" class="more-link"><i class="icons icon-more"></i></a>
+            </li>
+        }
+
     </ul>
 </section>
-<!-- End last news -->

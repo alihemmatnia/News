@@ -1,0 +1,25 @@
+﻿@model IEnumerable<News.DomainClasses.Page.Page>
+
+@{
+    ViewData["Title"] = "خبر های گروه" + ViewData["grouptitle"].ToString();
+}
+
+
+<section class="last-news-section border-radius margin-top-60">
+    <header><i class="icons icon-doc-2"></i>  <h3> آخرین آخبار ارسالی گروه @ViewData["grouptitle"].ToString()</h3> </header>
+    <ul>
+        @foreach (var it in Model)
+        {
+            <li>
+                <img class="border-radius" src="~/Images/@it.ImageName">
+                <h2> <a href="/News/@it.PageId"> @it.PageTitle </a></h2>
+                <p>
+                    @it.ShortDescription
+                </p>
+                <span class="date-publish"><i class="fa fa-calendar"></i> انتشار : @it.CreateDate.ToShamsi() </span>
+                <a href="" class="more-link"><i class="icons icon-more"></i></a>
+            </li>
+        }
+
+    </ul>
+</section>

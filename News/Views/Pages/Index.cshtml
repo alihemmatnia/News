@@ -1,0 +1,68 @@
+﻿@model IEnumerable<News.DomainClasses.Page.Page>
+
+@{
+    ViewData["Title"] = "خبرها";
+}
+
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">ساخت خبر جدید</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GroupId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PageTitle)
+            </th>
+          
+            <th>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShowSlider)
+            </th>
+     
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Writer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+               @Html.DisplayFor(odel => item.GroupId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PageTitle)
+            </td>
+          
+            <td>
+               <img src="~/Images/@item.ImageName" class="thumbnail" style="max-width:100px"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowSlider)
+            </td>
+         
+            <td>
+                @item.CreateDate.ToShamsi()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Writer)
+            </td>
+            <td>
+                <a asp-action="Edit" class="btn btn-primary btn-sm" asp-route-id="@item.PageId">ویرایش</a> |
+                <a asp-action="Details" class="btn btn-warning btn-sm" asp-route-id="@item.PageId">جزئیات</a> |
+                <a asp-action="Delete" class="btn btn-danger btn-sm" asp-route-id="@item.PageId">حذف</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

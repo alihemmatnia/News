@@ -28,13 +28,12 @@
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-xs-5">
                     <ul>
-                        <li><a href=""><i class="fa fa-home"></i></a></li>
-                        <li><a href=""><i class="fa fa-question-circle"></i></a></li>
-                        <li><a href=""><i class="fa fa-envelope"></i></a></li>
+                        <li><a href="/"><i class="fa fa-home"></i></a></li>
+                        <li><a href="/"><i class="fa fa-envelope"></i></a></li>
                     </ul>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-7">
-                    <span>امروز : 18/08/1395</span>
+                    <span>امروز : @DateTime.Now.ToShamsi()</span>
                 </div>
             </div>
         </div>
@@ -45,7 +44,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <a href="" class="logo"><img src="img/logo.png" alt="" title=""></a>
+                    <a href="" class="logo"><img src="~/img/img.jpg" style="max-width:70px;background-size:cover;border-radius:50%" alt="" title=""></a>
                     <div class="left-side">
                         <h1><a href="">سایت خبری اتراب</a></h1>
                         <h2> پایگاه اطلاع رسانی و خبری</h2>
@@ -53,8 +52,8 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <form action="" method="get" class="border-radius">
-                        <input class="border-radius" type="text" placeholder=" جستجو کنید ... ">
+                    <form action="/Search" method="get" class="border-radius">
+                        <input class="border-radius" type="text" name="key" placeholder=" جستجو کنید ... ">
                         <button><i class="fa fa-search"></i></button>
                     </form>
                 </div>
@@ -66,18 +65,7 @@
     <nav class="main-menu">
         <div class="container">
             <span><i class="fa fa-th-list"></i></span>
-            <ul>
-                <li><a href=""> صفحه اصلی </a></li>
-                <li>
-                    <span>گروه های خبری</span>
-                    <ul>
-                        <li><a href="">اخبار سیاسی</a></li>
-                        <li><a href="">اخبار فرهنگی</a></li>
-                        <li><a href="">اخبار اقتصادی</a></li>
-                        <li><a href="">اخبار اجتماعی</a></li>
-                    </ul>
-                </li>
-            </ul>
+            <partial name="_ShowGroupsInMenu"/>
         </div>
     </nav>
     <!-- End menu -->
@@ -87,47 +75,11 @@
 
             <aside class="col-md-4 col-sm-12 col-xs-12 pull-right">
 
-                <section class="category-section border-radius">
-                    <header><i class="fa fa-folder-open-o"></i> <h3> دسته بندی ها </h3></header>
-                    <ul>
-                        <li><a href=""> خبر سایسی  <span>10</span></a></li>
-                        <li><a href=""> خبر اقتصادی  <span>15</span></a></li>
-                        <li><a href=""> خبر اجتماعی  <span>20</span></a></li>
-                        <li><a href=""> خبر سایسی  <span>10</span></a></li>
-                        <li><a href=""> خبر همینطوری  <span>15</span></a></li>
-                        <li><a href=""> خبر سایسی  <span>20</span></a></li>
-                        <li><a href=""> خبر سایسی  <span>10</span></a></li>
-                    </ul>
-                </section>
+                @await Component.InvokeAsync("ShowGroupsComponent") 
                 <!-- most views news -->
-                <section class="last-news-side border-radius">
-                    <header><i class="icons icon-star"></i> <h3> پربازدیدترین اخبار </h3></header>
-                    <ul>
-                        <li>
-                            <img class="border-radius" src="img/thumb.png">
-                            <h2> <a href="">عنوان خبر در این ناحیه قرار میگیرد</a></h2>
-                            <span>انتشار : 15/08/1395</span>
-                        </li>
-                        <li>
-                            <img class="border-radius" src="img/thumb.png">
-                            <h2> <a href="">عنوان خبر در این ناحیه قرار میگیرد</a></h2>
-                            <span>انتشار : 15/08/1395</span>
-                        </li>
-                        <li>
-                            <img class="border-radius" src="img/thumb.png">
-                            <h2> <a href="">عنوان خبر در این ناحیه قرار میگیرد</a></h2>
-                            <span>انتشار : 15/08/1395</span>
-                        </li>
-                        <li>
-                            <img class="border-radius" src="img/thumb.png">
-                            <h2> <a href="">عنوان خبر در این ناحیه قرار میگیرد</a></h2>
-                            <span>انتشار : 15/08/1395</span>
-                        </li>
-                    </ul>
-                </section>
+                @await Component.InvokeAsync("ShowTopPageComponent")
                 <!-- end most views news -->
             </aside>
-
 
             <div class="col-md-8 col-sm-12 col-xs-12 ">
 
@@ -178,5 +130,6 @@
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/owl.carousel.js"></script>
     <script src="~/js/script.js"></script>
+    @RenderSection("Scripts", required:false)
 </body>
 </html>

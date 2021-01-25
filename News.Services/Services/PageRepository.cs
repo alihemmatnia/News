@@ -29,12 +29,36 @@ namespace News.Services.Services
 
         public IEnumerable<Page> GetAllPage()
         {
-            return _context.Pages.ToList();
+            return _context.Pages.OrderByDescending(p=>p.CreateDate).ToList();
+        }
+
+        public IEnumerable<Page> GetLatesPage()
+        {
+            return _context.Pages.OrderByDescending(p => p.CreateDate).Take(4).ToList();
+        }
+
+        public IEnumerable<Page> GetPageByGroupId(int id)
+        {
+            return _context.Pages.Where(p => p.GroupId == id).ToList();
         }
 
         public Page GetPageById(int Id)
         {
             return _context.Pages.Find(Id);
+        }
+
+        public IEnumerable<Page> GetPagesInSlider()
+        {
+            return _context.Pages.Where(p => p.ShowSlider).ToList();
+        }
+        public IEnumerable<Page> Search(string key)
+        {
+            return _context.Pages.Where(q=>q.PageTitle.Contains(key)||q.PageContent.Contains(key)||q.ShortDescription.Contains(key)).Distinct().ToList();
+        }
+
+        public IEnumerable<Page> GetTopPage(int take = 4)
+        {
+            return _context.Pages.OrderByDescending(i => i.Visit).Take(take).ToList();
         }
 
         public void InsertPage(Page page)

@@ -48,9 +48,9 @@ namespace News.Web.Controllers
                 if (res.Succeeded)
                 {
                     // Send Email Message For Confirm Email
-                    //var EmailConfirmToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    //var emailMessage = Url.Action("ConfirmEmail", "Account", new { username = user.UserName, token = EmailConfirmToken }, Request.Scheme);
-                    //await _smssender.Sendsms(model.Email, "تایید ایمیل ~ علی همت نیا", emailMessage);
+                    var EmailConfirmToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var emailMessage = Url.Action("ConfirmEmail", "Account", new { username = user.UserName, token = EmailConfirmToken }, Request.Scheme);
+                    await _smssender.Sendsms(model.Email, "تایید ایمیل ~ علی همت نیا", emailMessage);
                     if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                     {
                         return Redirect(returnUrl);
@@ -91,7 +91,7 @@ namespace News.Web.Controllers
                     {
                         return Redirect(returnUrl);
                     }
-                    return Redirect("/Admin/Index");
+                    return Redirect("/Pages/");
                 }
 
                 if (res.IsLockedOut)
@@ -114,7 +114,7 @@ namespace News.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> LogOut()
         {
             await _signmanager.SignOutAsync();
