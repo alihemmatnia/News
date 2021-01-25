@@ -22,8 +22,8 @@ namespace News.Services.Services
                     Password = ""
                 };
                 client.Credentials = cr;
-                client.Host = "";
-                client.Port = ;
+                client.Host = "gmail.com";
+                client.Port = 468;
                 client.EnableSsl = true;
                 using var emailMessage = new MailMessage()
                 {
