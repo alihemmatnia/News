@@ -16,7 +16,10 @@ namespace News.Web.ViewComponnets
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            return await Task.FromResult((IViewComponentResult)View("ShowGroupComponent", _pageGroupRepository.GetListGroups()));
+            return await Task.FromResult(
+                (IViewComponentResult)View("ShowGroupComponent", 
+                _pageGroupRepository.GetListGroups()
+            ));
         }
     }
 }
