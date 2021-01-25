@@ -1,0 +1,78 @@
+﻿@model News.DomainClasses.Page.Page
+@using News.Utilities.Converter;
+
+@{
+    ViewData["Title"] = "جزییات خبر";
+}
+
+<h2>جزییات خبر</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GroupId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PageTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PageTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShortDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShortDescription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PageContent)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PageContent)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Visit)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Visit)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageName)
+        </dt>
+        <dd>
+            <img src="~/NewsImages/@Model.ImageName" class="thumbnail" style="max-width:200px" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShowSlider)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShowSlider)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PageTag)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PageTag)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+        <dd>
+            @Model.CreateDate.ToShamsi();
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Writer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Writer)
+        </dd>
+    </dl>
+</div>
+<div>
+
+    <a href="Index">بازگشت به لیست</a>
+</div>

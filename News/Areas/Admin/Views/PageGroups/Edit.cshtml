@@ -1,0 +1,32 @@
+﻿@model News.DomainClasses.PageGroups.PageGroup
+
+@{
+    ViewData["Title"] = "ویرایش";
+}
+
+<h2>ویرایش گروه خبری</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form action="Edit?id=@Model.GroupId" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="GroupId" />
+            <div class="form-group">
+                <label asp-for="GroupTitle" class="control-label"></label>
+                <input asp-for="GroupTitle" class="form-control" />
+                <span asp-validation-for="GroupTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="ویرایش" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a href="Index">برگشت به لیست گروه های خبری</a>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

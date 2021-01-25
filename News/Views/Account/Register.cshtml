@@ -1,0 +1,8 @@
+﻿@model News.ViewModel.Account.Register.RegisterViewModel
+
+    @if (ViewData["des"] != null)
+    {
+        <script>
+            swal('@ViewData["title"]', '@ViewData["des"]', '@ViewData["mode"]');
+        </script>
+    }
