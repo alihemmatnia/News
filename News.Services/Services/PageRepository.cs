@@ -53,7 +53,7 @@ namespace News.Services.Services
         }
         public IEnumerable<Page> Search(string key)
         {
-            return _context.Pages.Where(q=>q.PageTitle.Contains(key)||q.PageContent.Contains(key)||q.ShortDescription.Contains(key)).Distinct().ToList();
+            return _context.Pages.Where(q=>q.PageTitle.Contains(key)||q.PageTag.Contains(key)||q.PageContent.Contains(key)||q.ShortDescription.Contains(key)).Distinct().ToList();
         }
 
         public IEnumerable<Page> GetTopPage(int take = 4)
