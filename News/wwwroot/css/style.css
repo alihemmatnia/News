@@ -6,6 +6,11 @@
   font-weight:normal;
   text-rendering:optimizeLegibility;
 }
+
+.iran{
+    font-family:'yekan';
+}
+
 @font-face{
   font-family:'numbers';
   src:url("../fonts/yekannumbers.eot");
