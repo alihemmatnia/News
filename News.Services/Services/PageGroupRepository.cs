@@ -19,13 +19,12 @@ namespace News.Services.Services
         }
         public void DeletePageGroup(PageGroup pageGroup)
         {
-            _context.Entry(pageGroup).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
-
+            _context.PageGroups.Remove(pageGroup);
         }
 
         public void DeletePageGroup(int id)
         {
-            _context.Entry(GetPageGroupById(id)).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+            _context.PageGroups.Remove(GetPageGroupById(id));
         }
 
         public PageGroup GetPageGroupById(int Id)
@@ -50,15 +49,13 @@ namespace News.Services.Services
        
         public void UpdatePageGroup(PageGroup pageGroup)
         {
-            _context.Entry(pageGroup).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.PageGroups.Update(pageGroup);
         }
 
         public bool GroupExists(int id)
         {
             return _context.PageGroups.Any(i => i.GroupId == id);
         }
-
-     
 
         public List<ShowGroupsVM> GetListGroups()
         {

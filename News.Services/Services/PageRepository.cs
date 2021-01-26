@@ -18,13 +18,12 @@ namespace News.Services.Services
         }
         public void DeletePage(Page page)
         {
-            _context.Entry(page).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+            _context.Pages.Remove(page);   
         }
 
         public void DeletePage(int Id)
         {
-            _context.Entry(GetPageById(Id)).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
-
+            _context.Pages.Remove(GetPageById(Id));
         }
 
         public IEnumerable<Page> GetAllPage()
@@ -78,7 +77,7 @@ namespace News.Services.Services
 
         public void UpdatePage(Page page)
         {
-            _context.Entry(page).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.Pages.Update(page);
         }
     }
 }

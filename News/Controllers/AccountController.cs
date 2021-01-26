@@ -38,18 +38,18 @@ namespace News.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser()
+                IdentityUser user = new IdentityUser()
                 {
                     UserName = model.Username,
                     Email = model.Email,
                     EmailConfirmed=true
                 };
-                var res = await _userManager.CreateAsync(user: user, password: model.Password);
+                IdentityResult res = await _userManager.CreateAsync(user: user, password: model.Password);
                 if (res.Succeeded)
                 {
                     // Send Email Message For Confirm Email
-                    var EmailConfirmToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var emailMessage = Url.Action("ConfirmEmail", "Account", new { username = user.UserName, token = EmailConfirmToken }, Request.Scheme);
+                    string EmailConfirmToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    string emailMessage = Url.Action("ConfirmEmail", "Account", new { username = user.UserName, token = EmailConfirmToken }, Request.Scheme);
                     await _smssender.Sendsms(model.Email, "تایید ایمیل ~ علی همت نیا", emailMessage);
                     if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                     {
@@ -60,7 +60,7 @@ namespace News.Web.Controllers
 
                     ViewData["mode"] = "success";
                 }
-                foreach (var i in res.Errors)
+                foreach (IdentityError i in res.Errors)
                 {
                     ModelState.AddModelError("", i.Description);
                 }
@@ -83,7 +83,7 @@ namespace News.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var res = await _signmanager.PasswordSignInAsync(model.Username, model.Password, model.Remem, true);
+                Microsoft.AspNetCore.Identity.SignInResult res = await _signmanager.PasswordSignInAsync(model.Username, model.Password, model.Remem, true);
 
                 if (res.Succeeded)
                 {
@@ -102,7 +102,6 @@ namespace News.Web.Controllers
                 }
                 if (res.IsNotAllowed)
                 {
-
                     ViewData["ErrorMessage"] = "ایمیل شما تایید نشده است";
                     ViewData["mode"] = "warning";
                     return View(model);
@@ -129,12 +128,12 @@ namespace News.Web.Controllers
             {
                 return NotFound();
             }
-            var user = await _userManager.FindByNameAsync(username);
+            IdentityUser user = await _userManager.FindByNameAsync(username);
             if (user == null)
             {
                 return NotFound();
             }
-            var res = await _userManager.ConfirmEmailAsync(user, token);
+            IdentityResult res = await _userManager.ConfirmEmailAsync(user, token);
 
             return Content(res.Succeeded ? "با موفقیت تایید شد" : "ایمیل تایید نشد");
         }

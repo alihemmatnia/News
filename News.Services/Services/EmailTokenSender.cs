@@ -14,9 +14,9 @@ namespace News.Services.Services
 
         public Task Sendsms(string email, string subjet, string message, bool ishtml = false)
         {
-            using (var client = new SmtpClient())
+            using (SmtpClient client = new SmtpClient())
             {
-                var cr = new NetworkCredential()
+                NetworkCredential cr = new NetworkCredential()
                 {
                     UserName = "", // Without @gmail.com or ...; فقط نام کاربری بدون @gmail.com
                     Password = ""
@@ -25,7 +25,7 @@ namespace News.Services.Services
                 client.Host = "gmail.com";
                 client.Port = 468;
                 client.EnableSsl = true;
-                using var emailMessage = new MailMessage()
+                using MailMessage emailMessage = new MailMessage()
                 {
                     To = { new MailAddress(email) },
                     From = new MailAddress(""), // Enter Your Mail Addres; ایمیل خودتون رو بنویسید

@@ -28,14 +28,11 @@ namespace News.Web.Controllers
             _userManager = userManager;
         }
 
-
-        // GET: Pages
         public IActionResult Index()
         {
             return View(_pageRepository.GetAllPage());
         }
 
-        // GET: Pages/Details/5
         public IActionResult Details(int? id)
         {
             if (id == null)
@@ -43,7 +40,7 @@ namespace News.Web.Controllers
                 return NotFound();
             }
 
-            var page = _pageRepository.GetPageById(id.Value);
+            Page page = _pageRepository.GetPageById(id.Value);
             if (page == null)
             {
                 return NotFound();
@@ -52,7 +49,6 @@ namespace News.Web.Controllers
             return View(page);
         }
 
-        // GET: Pages/Create
         public IActionResult Create()
         {
             ViewData["Groups"] = new SelectList(_pageGroupRepository.GetAllPageGroups(), "GroupId", "GroupTitle");
@@ -75,7 +71,7 @@ namespace News.Web.Controllers
                     string savepath = Path.Combine(
                         Directory.GetCurrentDirectory(), "wwwroot/Images", page.ImageName
                     );
-                    using (var st = new FileStream(savepath, FileMode.Create))
+                    using (FileStream st = new FileStream(savepath, FileMode.Create))
                     {
                         await imgup.CopyToAsync(st);
                     }
@@ -87,7 +83,6 @@ namespace News.Web.Controllers
             return View(page);
         }
 
-        // GET: Pages/Edit/5
         public IActionResult Edit(int? id)
         {
             if (id == null)
@@ -95,7 +90,7 @@ namespace News.Web.Controllers
                 return NotFound();
             }
 
-            var page = _pageRepository.GetPageById(id.Value);
+            Page page = _pageRepository.GetPageById(id.Value);
             if (page == null)
             {
                 return NotFound();
@@ -104,9 +99,6 @@ namespace News.Web.Controllers
             return View(page);
         }
 
-        // POST: Pages/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(IFormFile imgup,int id, [Bind("PageId,GroupId,PageTitle,ShortDescription,PageContent,Visit,ImageName,ShowSlider,PageTag,CreateDate,Writer")] Page page)
@@ -130,7 +122,7 @@ namespace News.Web.Controllers
                         string savepath = Path.Combine(
                                 Directory.GetCurrentDirectory(), "wwwroot/Images", page.ImageName
                             );
-                        using (var st = new FileStream(savepath, FileMode.Create))
+                        using (FileStream st = new FileStream(savepath, FileMode.Create))
                         {
                             imgup.CopyTo(st);
                         }
@@ -154,7 +146,6 @@ namespace News.Web.Controllers
             return View(page);
         }
 
-        // GET: Pages/Delete/5
         public IActionResult Delete(int? id)
         {
             if (id == null)
@@ -162,7 +153,7 @@ namespace News.Web.Controllers
                 return NotFound();
             }
 
-            var page = _pageRepository.GetPageById(id.Value);
+            Page page = _pageRepository.GetPageById(id.Value);
             if (page == null)
             {
                 return NotFound();
@@ -171,16 +162,15 @@ namespace News.Web.Controllers
             return View(page);
         }
 
-        // POST: Pages/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            var page = _pageRepository.GetPageById(id);
+            Page page = _pageRepository.GetPageById(id);
             _pageRepository.DeletePage(page);
             if (page.ImageName != null)
             {
-                var imgpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images", page.ImageName);
+                string imgpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images", page.ImageName);
                 if (System.IO.File.Exists(imgpath))
                 {
                     System.IO.File.Delete(imgpath);

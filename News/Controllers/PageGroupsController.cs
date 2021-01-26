@@ -22,13 +22,11 @@ namespace News.Web.Controllers
             _pageGroupRepository = pageGroupRepository;
         }
 
-        // GET: PageGroups
         public IActionResult Index()
         {
             return View(_pageGroupRepository.GetListGroups());
         }
 
-        // GET: PageGroups/Details/5
         public IActionResult Details(int? id)
         {
             if (id == null)
@@ -36,7 +34,7 @@ namespace News.Web.Controllers
                 return NotFound();
             }
 
-            var pageGroup = _pageGroupRepository.GetPageGroupById(id.Value);
+            PageGroup pageGroup = _pageGroupRepository.GetPageGroupById(id.Value);
             if (pageGroup == null)
             {
                 return NotFound();
@@ -45,7 +43,6 @@ namespace News.Web.Controllers
             return View(pageGroup);
         }
 
-        // GET: PageGroups/Create
         public IActionResult Create()
         {
             return View();
@@ -65,7 +62,6 @@ namespace News.Web.Controllers
             return View(pageGroup);
         }
 
-        // GET: PageGroups/Edit/5
         public IActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,7 +69,7 @@ namespace News.Web.Controllers
                 return NotFound();
             }
 
-            var pageGroup = _pageGroupRepository.GetPageGroupById(id.Value);
+            PageGroup pageGroup = _pageGroupRepository.GetPageGroupById(id.Value);
             if (pageGroup == null)
             {
                 return NotFound();
@@ -114,7 +110,6 @@ namespace News.Web.Controllers
             return View(pageGroup);
         }
 
-        // GET: PageGroups/Delete/5
         public IActionResult Delete(int? id)
         {
             if (id == null)
@@ -122,7 +117,7 @@ namespace News.Web.Controllers
                 return NotFound();
             }
 
-            var pageGroup = _pageGroupRepository.GetPageGroupById(id.Value);
+            PageGroup pageGroup = _pageGroupRepository.GetPageGroupById(id.Value);
             if (pageGroup == null)
             {
                 return NotFound();
@@ -131,7 +126,6 @@ namespace News.Web.Controllers
             return View(pageGroup);
         }
 
-        // POST: PageGroups/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)

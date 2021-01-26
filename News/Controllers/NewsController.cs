@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using News.DomainClasses.Page;
 using News.Services.Repositories;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace News.Web.Controllers
         [Route("News/{id}")]
         public IActionResult ShowNews(int id)
         {
-            var page = _pageRepository.GetPageById(id);
+            Page page = _pageRepository.GetPageById(id);
             if (page != null)
             {
                 page.Visit += 1;
