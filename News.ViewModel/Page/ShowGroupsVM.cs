@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace News.ViewModel.Page
 {
-    public class ShowGroupsVM
+    public record ShowGroupsVM
     {
         public int GroupId { get; set; }
         public string GroupTitle { get; set; }
