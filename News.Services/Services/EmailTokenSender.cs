@@ -25,7 +25,7 @@ namespace News.Services.Services
                 client.Host = "gmail.com";
                 client.Port = 468;
                 client.EnableSsl = true;
-                using MailMessage emailMessage = new MailMessage()
+                using(MailMessage emailMessage = new MailMessage())
                 {
                     To = { new MailAddress(email) },
                     From = new MailAddress(""), // Enter Your Mail Addres; ایمیل خودتون رو بنویسید
