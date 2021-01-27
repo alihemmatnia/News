@@ -17,7 +17,7 @@ namespace News.Services.Services
         {
             _context = context;
         }
-        public async void DeletePageGroup(PageGroup pageGroup)
+        public void DeletePageGroup(PageGroup pageGroup)
         {
             _context.PageGroups.Remove(pageGroup);
         }
