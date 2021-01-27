@@ -33,9 +33,9 @@ namespace News.DomainClasses.Page
         public string ImageName { get; set; }
         [Display(Name = "نمایش در اسلایدر ؟")]
         public bool ShowSlider { get; set; }
-        [Display(Name = "کلمات کلیدی خبر(با , جدا کنید)")]
+        [Display(Name = "کلمات کلیدی خبر(با - جدا کنید)")]
         public string PageTag { get; set; }
-        [Display(Name ="تاریخ ساخت")]
+        [Display(Name ="تاریخ انتشار")]
         public DateTime CreateDate { get; set; }
         [Display(Name ="نویسنده")]
         public string Writer { get; set; }
