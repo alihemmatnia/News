@@ -1,5 +1,2 @@
 
-# News
-
-# Dotnet Version 5
-
+# News WebSite With Asp.Net Core 5
