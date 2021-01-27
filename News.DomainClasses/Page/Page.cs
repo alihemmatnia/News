@@ -5,7 +5,7 @@ using System.Text;
 
 namespace News.DomainClasses.Page
 {
-    public class Page
+    public record Page
     {
         public Page()
         {

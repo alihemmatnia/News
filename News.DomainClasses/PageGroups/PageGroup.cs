@@ -5,7 +5,7 @@ using System.Text;
 
 namespace News.DomainClasses.PageGroups
 {
-    public class PageGroup
+    public record PageGroup
     {
         public PageGroup()
         {
