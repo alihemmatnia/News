@@ -8,7 +8,7 @@
     <ul>
         @foreach (var it in Model)
         {
-            <li>
+            <li class="wow mt-4" >
                 <img class="border-radius" src="~/Images/@it.ImageName">
                 <h2> <a href="/News/@it.PageId"> @it.PageTitle </a></h2>
                 <p>
@@ -21,3 +21,8 @@
 
     </ul>
 </section>
+@section Scripts{ 
+<script>
+    new WOW().init();
+</script>
+}
