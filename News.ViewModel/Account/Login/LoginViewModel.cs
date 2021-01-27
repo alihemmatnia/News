@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace News.ViewModel.Account.Login
 {
-    public class LoginViewModel
+    public record LoginViewModel
     {
         [Required(ErrorMessage = "لطفا نام کاربری را وارد کنید")]
         [Display(Name = "نام کاربری ")]
