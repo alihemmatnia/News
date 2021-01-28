@@ -12,11 +12,13 @@ namespace News.Services.Services
     public class EmailTokenSender:IEmailSend
     {
 
-        public Task Sendsms(string email, string subjet, string message, bool ishtml = false)
+        public async Task Sendsms(string email, string subjet, string message, bool ishtml = false)
         {
-            using (SmtpClient client = new SmtpClient())
-            {
-                NetworkCredential cr = new NetworkCredential()
+           await Task.Run(()=>
+           {
+             using (SmtpClient client = new SmtpClient())
+                {
+                 NetworkCredential cr = new NetworkCredential()
                 {
                     UserName = "", // Without @gmail.com or ...; فقط نام کاربری بدون @gmail.com
                     Password = ""
@@ -35,7 +37,7 @@ namespace News.Services.Services
                 };
                 client.Send(emailMessage);
             };
-            return Task.CompletedTask;
+          });
         }
     }
 }
